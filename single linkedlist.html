@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+  <script type="text/javascript">
+    class NewNode
+    {
+      constructor(value_of_Data_part)
+      {
+        this.data_part =value_of_Data_part;
+        this.next_part = null;
+      }
+    }
+    class linked_list
+    {
+      constructor()
+      {
+        this.head_point=null;
+      }
+      create_node_at_beginning(value_of_Data_part)
+      {
+          let  CreateNewNode = new NewNode(value_of_Data_part);
+            if (this.head_point==null)
+            {
+                CreateNewNode.next_part=null;
+                this.head_point=CreateNewNode;
+            }
+            else
+            {
+                CreateNewNode.next_part=this.head_point
+                this.head_point=CreateNewNode;
+            }
+      }
+      create_node_after_Given_Number(value_of_data_part,afterNode)
+      {
+          let CreateNewNode =new NewNode(value_of_data_part);
+          if (this.head_point==null)
+          {
+                  CreateNewNode.next_part=null;
+                  this.head_point=CreateNewNode;
+          }
+          else
+          {
+            let count1=1;
+            let ptr=this.head_point;
+            while(ptr.next_part!=null)
+            {
+                ptr=ptr.next_part;
+                count1+=1;
+            }
+            if(count1<afterNode)
+            {
+                document.write("Insertion not Possible: ");
+            }
+            else
+            {
+                let count2=1;
+                let temp_pointer=this.head_point;
+                while(count2!=afterNode)
+                {
+                    temp_pointer=temp_pointer.next_part;
+                    count2+=1;
+                }
+                CreateNewNode.next_part=temp_pointer.next_part;
+                temp_pointer.next_part=CreateNewNode;
+            }
+          }
+      }
+      create_node_at_End(value_of_data_part)
+      {
+            let CreateNewNode =new NewNode(value_of_data_part);
+            if (this.head_point == null)
+            {
+                CreateNewNode.next_part=null;
+                this.head_point=CreateNewNode;
+            }
+            else
+            {
+                let temp_pointer=this.head_point;
+                while(temp_pointer.next_part != null)
+                {
+                    temp_pointer=temp_pointer.next_part;
+                }
+                temp_pointer.next_part=CreateNewNode;
+                CreateNewNode.next_part=null;
+            }
+      }
+      delete_node_at_beginning()
+      {
+            if(this.head_point==null)
+            {
+                document.write("empty");
+            }
+            else if(this.head_point.next_part==null)
+            {
+                delete(this.head_point);
+            }
+            else
+            {
+                let temp_pointer=this.head_point;
+                this.head_point=this.head_point.next_part;
+                temp_pointer=null;
+            }
+      }
+      delete_Given_number_node(afterNode)
+      {
+            if (this.head_point==null)
+            {
+                document.write("empty");
+            }
+            else if(this.head_point.next_part==null)
+            {
+                 this.head_point=null;
+            }
+            else
+            {
+                let count1=1;
+                let ptr=this.head_point;
+                while(ptr.next_part!=null)
+                {
+                      ptr=ptr.next_part;
+                      count1+=1;
+                }
+                if(count1<afterNode)
+                {
+                    document.write("Deletion not possible because there are only nodes available in list: "+ count1);
+                }
+                else
+                {
+                    let count2=1;
+                    let temp_pointer1=this.head_point;
+                    let temp_pointer2;
+                    while(count2!=afterNode)
+                    {
+                        temp_pointer2=temp_pointer1;
+                        temp_pointer1=temp_pointer1.next_part;
+                        count2++;
+                    }
+                    temp_pointer2.next_part=temp_pointer1.next_part;
+                    temp_pointer1=null;
+                }
+            }
+      }
+      delete_node_at_End()
+      {
+          if(this.head_point==null)
+          {
+                document.write("empty");
+          }
+          else if(this.head_point.next_part!=null)
+          {
+              let temp_pointer1=this.head_point;
+              let temp_pointer2;
+              while(temp_pointer1.next_part!=null)
+              {
+                  temp_pointer2=temp_pointer1;
+                  temp_pointer1=temp_pointer1.next_part;
+              }
+              temp_pointer2.next_part=null;
+              temp_pointer1=null;
+
+          }
+          else
+          {
+              this.head_point=null;
+          }
+
+      }
+      display()
+      {
+          if(this.head_point==null)
+          {
+              document.write("empty");
+          }
+          else
+          {
+              let temp_pointer=this.head_point;
+              while(temp_pointer!=null)
+              {
+                  document.write(temp_pointer.data_part+  " ");
+                  temp_pointer=temp_pointer.next_part;
+              }
+              document.write("<br/>");
+
+          }
+      }
+
+    }
+      let ob=new linked_list();
+      document.write("Inserted Element At Beginning: <br/>");
+      ob.create_node_at_beginning(4);
+      ob.display();
+      ob.create_node_at_beginning(3);
+      ob.display();
+      ob.create_node_at_beginning(2);
+      ob.display();
+      ob.create_node_at_beginning(1);
+      ob.display();
+      document.write("<br/> ");
+
+      document.write("Inserted Element After GivenNode: <br/>");
+      ob.create_node_after_Given_Number(10,3);
+      ob.display();
+      ob.create_node_after_Given_Number(5,2);
+      ob.display();
+      ob.create_node_after_Given_Number(11,1);
+      ob.display();
+      ob.create_node_after_Given_Number(20,5);
+      ob.display();
+      document.write("<br/>");
+
+      document.write("Inserted Element At End: <br/>");
+      ob.create_node_at_End(21);
+      ob.display();
+      ob.create_node_at_End(7);
+      ob.display();
+      ob.create_node_at_End(8);
+      ob.display();
+      ob.create_node_at_End(50);
+      ob.display();
+      document.write("<br/> ");
+
+      document.write("Delete Node At Begin: <br/>");
+      ob.delete_node_at_beginning();
+      ob.display();
+      ob.delete_node_at_beginning();
+      ob.display();
+      ob.delete_node_at_beginning();
+      ob.display();
+      document.write("<br/> ");
+
+      document.write("delete  GivenNode: <br/> ");
+      ob.delete_Given_number_node(3);
+      ob.display();
+      ob.delete_Given_number_node(4);
+      ob.display();
+      ob.delete_Given_number_node(2);
+      ob.display();
+      document.write("<br/> ");;
+
+      document.write("delete Node At End:  <br/>");
+      ob.delete_node_at_End();
+      ob.display();
+      ob.delete_node_at_End();
+      ob.display();
+      document.write("<br/> ");
+
+      document.write("Inserted Element After GivenNode: <br/>");
+      ob.create_node_after_Given_Number(10,15);
+      ob.display();
+      document.write("<br/> ");
+
+      document.write("Present Elements in the list: <br/>");
+      ob.display();
+  </script>
+  </body>
+</html>
